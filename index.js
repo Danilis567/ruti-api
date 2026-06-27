@@ -167,6 +167,30 @@ async function runJob() {
   }
 
   await saveLocalStatus(localStatus);
+
+  // Frontend için api_index.json oluştur
+  try {
+    const apiIndex = [];
+    for (const dataset of DATASETS) {
+      const datasetDir = path.join(DOWNLOAD_DIR, dataset.name);
+      let files = [];
+      try {
+        files = await fs.readdir(datasetDir);
+      } catch (e) {
+        // klasör yoksa atla
+      }
+      apiIndex.push({
+        id: dataset.id,
+        name: dataset.name,
+        lastUpdated: localStatus[dataset.id] || null,
+        files: files
+      });
+    }
+    await fs.writeFile(path.resolve('api_index.json'), JSON.stringify(apiIndex, null, 2), 'utf-8');
+  } catch (err) {
+    console.error('api_index.json oluşturulamadı:', err.message);
+  }
+
   console.log(`\n[${new Date().toLocaleString()}] Senkronizasyon Görevi Tamamlandı`);
   console.log(`======================================================\n`);
   isProcessing = false;

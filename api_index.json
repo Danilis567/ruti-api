@@ -1,0 +1,107 @@
+[
+  {
+    "id": "e2a87342-d39a-4742-ae25-165e10d2bc72",
+    "name": "gtfs",
+    "lastUpdated": "2026-06-26T19:06:13.31866Z",
+    "files": [
+      "agency.txt",
+      "calendar.txt",
+      "places.txt",
+      "routes.txt",
+      "shapes.txt",
+      "stops.txt",
+      "translations.txt",
+      "trips.txt"
+    ]
+  },
+  {
+    "id": "19542b74-a211-44a4-b732-f7f4245fe976",
+    "name": "tramvay_saatleri",
+    "lastUpdated": "2026-06-26T19:07:09.180505Z",
+    "files": [
+      "Akçaray Tramvayı Sefer Saatleri.xlsx"
+    ]
+  },
+  {
+    "id": "21cd230d-125b-44ba-b1d7-fb261ee06675",
+    "name": "taksi_duraklari",
+    "lastUpdated": "2026-06-26T19:10:40.380478Z",
+    "files": [
+      "taksi_duraklar.csv",
+      "taksi_duraklar.json",
+      "taksi_duraklar.xlsx"
+    ]
+  },
+  {
+    "id": "a9604fe2-c723-41fd-bf74-6cea8af16a54",
+    "name": "akilli_durak_bilgileri",
+    "lastUpdated": "2026-06-26T19:09:44.129441Z",
+    "files": [
+      "akilli-durak-bilgileri.csv",
+      "akilli-durak-bilgileri.xls"
+    ]
+  },
+  {
+    "id": "c7b7c933-7913-4483-937d-4760f7e5e29b",
+    "name": "akilli_durak_ekran_bilgileri",
+    "lastUpdated": "2026-06-26T19:11:15.999144Z",
+    "files": [
+      "Akıllı Durak Ekran Bilgileri.xlsx"
+    ]
+  },
+  {
+    "id": "c1008a5f-f54d-4978-8f14-c7ceea9d3586",
+    "name": "kobis_park_yerleri",
+    "lastUpdated": "2026-06-26T19:12:37.266921Z",
+    "files": [
+      "bisiklet-park-yerleri.csv",
+      "bisiklet-park-yerleri.json",
+      "kobis-istasyonlar.xls"
+    ]
+  },
+  {
+    "id": "88602516-ed14-4d61-bf53-5c3022439b6b",
+    "name": "taksi_durak_listesi",
+    "lastUpdated": "2026-06-26T19:13:56.40992Z",
+    "files": []
+  },
+  {
+    "id": "09079315-1e63-42c5-8dc6-c7e4b2f96f40",
+    "name": "aus_tum_saha_unsurlari",
+    "lastUpdated": "2026-06-26T20:27:08.415598Z",
+    "files": [
+      "aus-tum-saha-unsurlar.kmz",
+      "aus-tum-saha-unsurlarcizgiler.xls",
+      "aus-tum-saha-unsurlarnoktalar.xls",
+      "kocaeli-aus-unsurlar.xlsx"
+    ]
+  },
+  {
+    "id": "18479bd4-c5d6-4ba8-ba91-bc925078be81",
+    "name": "tramvay_istasyon_noktalari",
+    "lastUpdated": "2026-06-26T20:45:38.169678Z",
+    "files": [
+      "Akçaray Tramvay Noktaları ve Hat Uzunluk Bilgileri.xlsx"
+    ]
+  },
+  {
+    "id": "fb48309a-cb09-4188-b872-f66b8f8b6395",
+    "name": "ucretsiz_otoparklar",
+    "lastUpdated": "2026-06-26T20:48:09.659312Z",
+    "files": [
+      "ucretsiz_otoparklar.csv",
+      "ucretsiz_otoparklar.json",
+      "ucretsiz_otoparklar.xlsx"
+    ]
+  },
+  {
+    "id": "54501978-1424-40c0-9613-e618bc37a2db",
+    "name": "acik_otopark",
+    "lastUpdated": "2026-06-26T20:48:57.156138Z",
+    "files": [
+      "ack-otopark.csv",
+      "ack-otopark.xls",
+      "ack-otopark_.json"
+    ]
+  }
+]

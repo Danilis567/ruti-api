@@ -31,4 +31,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Otomatik Guncelleme: Yeni veri setleri indirildi"
-          file_pattern: 'downloads/* durum.json'
+          file_pattern: 'downloads/* durum.json api_index.json'
