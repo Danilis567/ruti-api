@@ -1,0 +1,1 @@
+table_name,field_name,language,translation,field_value

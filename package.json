@@ -1,0 +1,13 @@
+{
+  "name": "kocaeli-otomasyon",
+  "version": "1.0.0",
+  "description": "Kocaeli Açık Veri Otomasyonu",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "node-cron": "^3.0.3",
+    "puppeteer": "^25.2.1"
+  }
+}

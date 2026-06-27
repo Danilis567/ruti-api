@@ -1,0 +1,34 @@
+name: Kocaeli GTFS Otomatik Guncelleme
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Her saat başı çalışır
+  workflow_dispatch: # Manuel olarak butona basıp tetiklemek için
+
+jobs:
+  sync-data:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # Commit atabilmek icin izin
+
+    steps:
+      - name: Depoyu Klonla (Checkout repo)
+        uses: actions/checkout@v4
+
+      - name: Node.js Kurulumu
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Paketleri Yukle
+        run: npm install
+
+      - name: Verileri Guncelle (index.js calistir)
+        run: node index.js
+
+      - name: Degisiklikleri GitHub'a Kaydet (Commit & Push)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Otomatik Guncelleme: Yeni veri setleri indirildi"
+          file_pattern: 'downloads/* durum.json'
