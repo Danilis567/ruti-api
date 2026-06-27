@@ -1,249 +1,259 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kocaeli Açık Veri API Dizin</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Kocaeli GTFS Open Data / API Index</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #3b82f6;
-            --accent-hover: #60a5fa;
-            --border: rgba(255, 255, 255, 0.1);
+            --bg-color: #0d1117;
+            --container-bg: #161b22;
+            --header-bg: #21262d;
+            --border-color: #30363d;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --link-color: #58a6ff;
+            --link-hover: #79c0ff;
+            --success-color: #3fb950;
+            --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-color);
-            background-image: radial-gradient(circle at top right, #1e293b, #0f172a);
+            background-color: var(--bg-color);
             color: var(--text-main);
+            font-family: var(--font-ui);
             margin: 0;
-            padding: 2rem;
-            min-height: 100vh;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-            animation: fadeIn 1s ease-out;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p.subtitle {
-            color: var(--text-muted);
-            font-size: 1.1rem;
+            padding: 24px;
+            line-height: 1.5;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1012px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
         }
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.5rem;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            animation: slideUp 0.6s ease-out backwards;
+        header {
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            border-color: rgba(255,255,255,0.2);
-        }
-
-        .card-header {
-            margin-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1rem;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
+        h1 {
+            font-size: 20px;
             font-weight: 600;
-            margin: 0 0 0.5rem 0;
-            text-transform: capitalize;
-            color: #e2e8f0;
-        }
-
-        .card-meta {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            margin: 0 0 8px 0;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
         }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #10b981;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 8px #10b981;
+        .repo-meta {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 16px;
+        }
+
+        .dataset-block {
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--container-bg);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .dataset-header {
+            background-color: var(--header-bg);
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dataset-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dataset-name::before {
+            content: "📁";
+            font-size: 16px;
+        }
+
+        .dataset-info {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
         }
 
         .file-list {
             list-style: none;
-            padding: 0;
             margin: 0;
-            flex-grow: 1;
+            padding: 0;
         }
 
-        .file-item {
-            margin-bottom: 0.5rem;
-        }
-
-        .file-link {
+        .file-row {
             display: flex;
+            padding: 8px 16px;
+            border-bottom: 1px solid var(--border-color);
             align-items: center;
-            padding: 0.75rem;
-            background: rgba(255,255,255,0.03);
-            border-radius: 8px;
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: background 0.2s, color 0.2s;
         }
 
-        .file-link:hover {
-            background: rgba(59, 130, 246, 0.2);
-            color: var(--accent-hover);
+        .file-row:last-child {
+            border-bottom: none;
+        }
+
+        .file-row:hover {
+            background-color: rgba(177, 186, 196, 0.04);
         }
 
         .file-icon {
-            margin-right: 0.75rem;
-            opacity: 0.7;
-        }
-
-        .loading {
-            text-align: center;
-            font-size: 1.2rem;
             color: var(--text-muted);
-            grid-column: 1 / -1;
-            padding: 3rem;
+            margin-right: 12px;
+            font-family: var(--font-mono);
+            font-size: 14px;
         }
 
-        footer {
-            text-align: center;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
+        .file-name {
+            flex: 1;
+        }
+
+        .file-name a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 13px;
+        }
+
+        .file-name a:hover {
+            color: var(--link-color);
+            text-decoration: underline;
+        }
+
+        .file-action {
+            font-family: var(--font-mono);
+            font-size: 12px;
+        }
+
+        .file-action a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        .file-action a:hover {
+            text-decoration: underline;
+        }
+
+        .status-terminal {
+            font-family: var(--font-mono);
+            color: var(--success-color);
+            font-size: 13px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--container-bg);
+        }
+
+        .empty-row {
+            padding: 12px 16px;
+            font-family: var(--font-mono);
+            font-size: 13px;
             color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .empty-state {
-            color: #ef4444;
-            font-size: 0.9rem;
-            padding: 0.5rem 0;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>
+                <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1v-1h-8a1 1 0 0 0-1 1Zm0-2.5v-1h-8a1 1 0 0 0-1 1Zm0-2.5v-1h-8a1 1 0 0 0-1 1Z"></path></svg>
+                ruti-api / datasets
+            </h1>
+            <div class="repo-meta">
+                <span>API Status: <span style="color: var(--success-color)">Online</span></span>
+                <span>Type: Open Data Archive</span>
+                <span id="last-check-time">Checking...</span>
+            </div>
+        </header>
 
-    <header>
-        <h1>Kocaeli Açık Veri API</h1>
-        <p class="subtitle">Her saat başı otomatik güncellenen açık veri deposu.</p>
-    </header>
-
-    <div class="container" id="api-grid">
-        <div class="loading">Veriler yükleniyor...</div>
+        <div id="content">
+            <div class="status-terminal">> Fetching api_index.json...<span style="animation: blink 1s step-end infinite;">_</span></div>
+        </div>
     </div>
-
-    <footer>
-        Otomatik güncellenen <a href="https://github.com/Danilis567/ruti-api" target="_blank" style="color:var(--accent)">GitHub Deposu</a> üzerinden sunulmaktadır.
-    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-            const grid = document.getElementById('api-grid');
+            const content = document.getElementById('content');
+            const timeLabel = document.getElementById('last-check-time');
             
             try {
-                // Fetch the generated index
                 const response = await fetch('api_index.json');
-                if (!response.ok) throw new Error('API Index bulunamadı');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 
                 const datasets = await response.json();
-                
-                grid.innerHTML = ''; // Clear loading
-                
-                datasets.forEach((dataset, index) => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.style.animationDelay = `${index * 0.05}s`;
-                    
-                    const dateStr = dataset.lastUpdated 
-                        ? new Date(dataset.lastUpdated).toLocaleString('tr-TR') 
-                        : 'Hiç güncellenmedi';
-                    
-                    let filesHtml = '';
+                content.innerHTML = ''; 
+
+                let mostRecentUpdate = null;
+
+                datasets.forEach(dataset => {
+                    const block = document.createElement('div');
+                    block.className = 'dataset-block';
+
+                    let dateStr = 'Never updated';
+                    if (dataset.lastUpdated) {
+                        const dateObj = new Date(dataset.lastUpdated);
+                        dateStr = dateObj.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+                        
+                        if (!mostRecentUpdate || dateObj > mostRecentUpdate) {
+                            mostRecentUpdate = dateObj;
+                        }
+                    }
+
+                    let filesHtml = '<ul class="file-list">';
                     if (dataset.files && dataset.files.length > 0) {
-                        filesHtml = '<ul class="file-list">';
                         dataset.files.forEach(file => {
                             const fileUrl = `downloads/${dataset.name}/${file}`;
                             filesHtml += `
-                                <li class="file-item">
-                                    <a href="${fileUrl}" class="file-link" target="_blank">
-                                        <span class="file-icon">📄</span>
-                                        ${file}
-                                    </a>
+                                <li class="file-row">
+                                    <span class="file-icon">📄</span>
+                                    <div class="file-name">
+                                        <a href="${fileUrl}" target="_blank">${file}</a>
+                                    </div>
+                                    <div class="file-action">
+                                        <a href="${fileUrl}" download>Download</a>
+                                    </div>
                                 </li>
                             `;
                         });
-                        filesHtml += '</ul>';
                     } else {
-                        filesHtml = '<div class="empty-state">Henüz dosya indirilmedi.</div>';
+                        filesHtml += '<li class="empty-row">No files found in directory</li>';
                     }
-                    
-                    const title = dataset.name.replace(/_/g, ' ');
-                    
-                    card.innerHTML = `
-                        <div class="card-header">
-                            <h2 class="card-title">${title}</h2>
-                            <div class="card-meta">
-                                <span class="status-dot"></span>
-                                Son Güncelleme: ${dateStr}
-                            </div>
+                    filesHtml += '</ul>';
+
+                    block.innerHTML = `
+                        <div class="dataset-header">
+                            <div class="dataset-name">${dataset.name}</div>
+                            <div class="dataset-info">Updated: ${dateStr}</div>
                         </div>
                         ${filesHtml}
                     `;
-                    
-                    grid.appendChild(card);
+                    content.appendChild(block);
                 });
-                
+
+                if (mostRecentUpdate) {
+                    timeLabel.innerText = `Last sync: ${mostRecentUpdate.toISOString().replace('T', ' ').substring(0, 19)} UTC`;
+                }
+
             } catch (error) {
-                grid.innerHTML = `<div class="loading" style="color:#ef4444">Hata: Veriler yüklenemedi. (${error.message})</div>`;
+                content.innerHTML = `<div class="status-terminal" style="color: #ff7b72">> Error loading API index: ${error.message}</div>`;
             }
         });
     </script>
